@@ -33,6 +33,10 @@ android {
     }
 }
 
+kapt {
+    showProcessorTimings = true
+}
+
 dependencies {
     compileOnly project(path: ':annotation')
     kapt project(':processor')

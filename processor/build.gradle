@@ -16,6 +16,10 @@ compileTestKotlin {
     }
 }
 
+kapt {
+    showProcessorTimings = true
+}
+
 dependencies {
     implementation project(':annotation')
 

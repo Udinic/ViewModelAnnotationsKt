@@ -13,8 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     val billList = listOf(
             Bill("Osama", "4300"),
-            Bill("Rao", "1234"),
-            Bill("SomeOtherDude", "2434")
+            Bill("udinic", "1234"),
+            Bill("SomeOtsdsherDude", "2434"),
+            Bill("sdsd", "2sdwdw34")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
