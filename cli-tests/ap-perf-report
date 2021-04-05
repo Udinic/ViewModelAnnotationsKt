@@ -1,2 +1,2 @@
 Kapt Annotation Processing performance report:
-me.osama.vmannotationprocessor.BindFieldsProcessor: total: 103 ms, init: 27 ms, 2 round(s): 76 ms, 0 ms
+me.osama.vmannotationprocessor.BindFieldsProcessor: total: 133 ms, init: 36 ms, 2 round(s): 97 ms, 0 ms
