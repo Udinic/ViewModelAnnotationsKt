@@ -1,0 +1,10 @@
+Kotlin to JVM Compiler performance report
+        ANALYZE    2924 ms      21.888 loc/s
+Binary class from Kotlin file performed 248 times, total time 90 ms
+Call resolve performed 11 times, total time 180 ms
+Find Java class performed 26 times, total time 109 ms
+GC time for PS MarkSweep is 234 ms, 3 collections
+GC time for PS Scavenge is 46 ms, 9 collections
+INIT: Compiler initialized in 757 ms
+JIT time is 9761 ms
+Type info performed 19 times, total time 183 ms

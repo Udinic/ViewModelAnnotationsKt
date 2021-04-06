@@ -37,8 +37,8 @@ class BindFieldsProcessor : AbstractProcessor() {
     }
 
     private fun generateNewMethod(method: ExecutableElement, variable: VariableElement, packageOfMethod: String) {
-        val generatedSourcesRoot: String = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
-//        val generatedSourcesRoot = "/Users/udinic/projects/ViewModelAnnotationsKt/cli-tests/kapt_gen/sources"
+//        val generatedSourcesRoot: String = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME].orEmpty()
+        val generatedSourcesRoot = "/Users/udinic/projects/ViewModelAnnotationsKt/cli-tests/kapt_gen/sources"
         if(generatedSourcesRoot.isEmpty()) {
             processingEnv.messager.errormessage { "UDINIC Can't find the target directory for generated Kotlin files." }
             return

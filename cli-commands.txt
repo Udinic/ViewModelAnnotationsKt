@@ -1,0 +1,89 @@
+
+Commands to run this project using kotlinc
+
+
+export MY_CLASSPATH3="$JAVA_HOME/lib/tools.jar:$KOTLIN_HOME/lib/kotlin-stdlib.jar:/Users/udinic/projects/ViewModelAnnotationsKt/annotation/build/libs/annotation.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5ac0db57d7e5527cda123bfcf87b77f0/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/367624c42dfcc23c2099637063d4f66c/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/79d77e1524c6f13efb971f56a407c41a/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/caf9836d158d369eda23664007216e72/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/7ef177deddbc0a37112b54e578fe7bcd/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/fde876ecbebb22907dc47ce1d15e814c/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/03b7d59b9b6ce6de90739275167ebf18/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/53eaf89877c00d05e9b002b94a017bf9/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/6260b364672309cc057594a682554dcc/jars/classes.jar:/Users/udinic/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar:/Users/udinic/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.0/931532e953a477f876f2de18c2e7f16eee01078f/constraint-layout-solver-1.1.0.jar::/Users/udinic/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/f679e72e4ff4d18b16435823f20ceb44/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/ac6eca81cc8c75c4c49073bd24547b4d/jars/classes.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/12086cfc6e625bb7446a1e2bf49afd44/jars/classes.jar:/Users/udinic/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar:/Users/udinic/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/11b11f85786f0510aa21ab4fcfcbf0da/jars/classes.jar:/Users/udinic/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.0/8007981f7d7540d89cd18471b8e5dcd2b4f99167/common-1.1.0.jar:/opt/android_sdk/platforms/android-27/android.jar:/Users/udinic/.gradle/caches/modules-2/files-2.1/com.squareup/kotlinpoet/1.8.0/35091cdf46ea7e911e433f5269bcd73c8d536c9/kotlinpoet-1.8.0.jar"
+
+
+
+
+# main command to run kapt on the code
+# need to generate the project's ":processor" jar first
+
+kotlinc -cp $MY_CLASSPATH3 \
+-Xplugin=kotlin-annotation-processing-1.4.255-SNAPSHOT.jar -P \
+plugin:org.jetbrains.kotlin.kapt3:aptMode=stubsAndApt,\
+plugin:org.jetbrains.kotlin.kapt3:apclasspath=processor/build/libs/processor.jar,\
+plugin:org.jetbrains.kotlin.kapt3:sources=cli-tests/kapt_gen/sources,\
+plugin:org.jetbrains.kotlin.kapt3:classes=cli-tests/kapt_gen/classes,\
+plugin:org.jetbrains.kotlin.kapt3:stubs=cli-tests/kapt_gen/stubs,\
+plugin:org.jetbrains.kotlin.kapt3:verbose=true,\
+plugin:org.jetbrains.kotlin.kapt3:dumpProcessorTimings=cli-tests/ap-stats.report \
+-Xplugin=$JAVA_HOME/lib/tools.jar \
+-d cli-tests/out \
+-no-jdk -no-reflect -no-stdlib -verbose \
+sample/src/main/
+
+
+# Using snapshop w/o new flag
+
+kotlinc -cp $MY_CLASSPATH3 \
+-Xplugin=kotlin-annotation-processing-1.4.255-SNAPSHOT.jar -P \
+plugin:org.jetbrains.kotlin.kapt3:aptMode=stubsAndApt,\
+plugin:org.jetbrains.kotlin.kapt3:apclasspath=processor/build/libs/processor.jar,\
+plugin:org.jetbrains.kotlin.kapt3:sources=cli-tests/kapt_gen/sources,\
+plugin:org.jetbrains.kotlin.kapt3:classes=cli-tests/kapt_gen/classes,\
+plugin:org.jetbrains.kotlin.kapt3:stubs=cli-tests/kapt_gen/stubs,\
+plugin:org.jetbrains.kotlin.kapt3:verbose=true \
+-Xplugin=$JAVA_HOME/lib/tools.jar \
+-d cli-tests/out \
+-no-jdk -no-reflect -no-stdlib -verbose \
+sample/src/main/ 
+
+
+
+# Using the stock lib
+
+kotlinc -cp $MY_CLASSPATH3 \
+-Xreport-perf \
+-Xdump-perf=./cli-tests/perf-report \
+-Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar -P \
+plugin:org.jetbrains.kotlin.kapt3:aptMode=stubsAndApt,\
+plugin:org.jetbrains.kotlin.kapt3:apclasspath=./processor/build/libs/processor.jar,\
+plugin:org.jetbrains.kotlin.kapt3:sources=./cli-tests/kapt_gen/sources,\
+plugin:org.jetbrains.kotlin.kapt3:classes=./cli-tests/kapt_gen/classes,\
+plugin:org.jetbrains.kotlin.kapt3:stubs=./cli-tests/kapt_gen/stubs,\
+plugin:org.jetbrains.kotlin.kapt3:verbose=true,\
+plugin:org.jetbrains.kotlin.kapt3:showProcessorTimings=true \
+-Xplugin=$JAVA_HOME/lib/tools.jar \
+-d cli-tests/out \
+-no-jdk -no-reflect -no-stdlib -verbose \
+sample/src/main/
+
+
+
+
+# build the code after kapt
+# note: we can also use plugin:org.jetbrains.kotlin.kapt3:aptMode=compile in the previous commands to include this part
+
+kotlinc -cp $MY_CLASSPATH3 \
+-Xreport-perf \
+-Xdump-perf=./cli-tests/perf-comp-report \
+-d cli-tests/out \
+-no-jdk -no-reflect -no-stdlib -verbose \
+sample/src/main/ sample/build/generated/source/r/debug cli-tests/kapt_gen/sources
+
+
+# Trying to use the kapt command (didn't work)
+
+kapt \
+-Kapt-mode=stubsAndApt \
+-Kapt-sources=cli-tests/kapt_gen/sources \
+-Kapt-classes=cli-tests/kapt_gen/classes \
+-Kapt-stubs=cli-tests/kapt_gen/stubs \
+-Kapt-classpath=processor/build/libs/processor.jar:/opt/android_sdk/platforms/android-27/android.jar \
+-Kapt-processors=me.osama.vmannotationprocessor.BindFieldsProcessor \
+-Kapt-verbose=true \
+sample/src/main/
+
+
